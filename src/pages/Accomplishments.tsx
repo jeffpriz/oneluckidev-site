@@ -11,17 +11,56 @@ const Accomplishments = () => {
           <div className="projects-grid">
             <div className="project-card">
               <div className="project-header">
-                <div className="project-icon">🔌</div>
-                <h4>Custom Extensions</h4>
+                <div className="project-icon">📊</div>
+                <h4>Pull Request Completion Report</h4>
               </div>
               <p>
-                Published custom extensions to the Azure DevOps Marketplace, helping teams streamline their 
-                development workflows and improve productivity.
+                Provides statistical insights into your Pull Request process including average PR open time, 
+                trend analysis, target branch distribution, and reviewer voting patterns. Helps teams optimize 
+                their code review workflow.
               </p>
+              <div className="project-links">
+                <a href="https://marketplace.visualstudio.com/items?itemName=OneLuckiDev.prApprovalReport" 
+                   target="_blank" rel="noopener noreferrer" className="project-link">
+                  View on Marketplace
+                </a>
+                <a href="https://github.com/jeffpriz/devops-pr-stats" 
+                   target="_blank" rel="noopener noreferrer" className="project-link">
+                  GitHub (28 ⭐)
+                </a>
+              </div>
               <div className="project-tags">
-                <span className="tag">Azure DevOps</span>
+                <span className="tag">Azure Repos</span>
+                <span className="tag">Pull Requests</span>
+                <span className="tag">Analytics</span>
                 <span className="tag">TypeScript</span>
-                <span className="tag">Marketplace</span>
+              </div>
+            </div>
+            <div className="project-card">
+              <div className="project-header">
+                <div className="project-icon">📚</div>
+                <h4>Wiki Age Report</h4>
+              </div>
+              <p>
+                Identifies stale and out-of-date documentation in your Azure DevOps Wiki. Tracks the age of 
+                wiki pages and allows creating work items for outdated documentation, helping teams maintain 
+                accurate and current documentation.
+              </p>
+              <div className="project-links">
+                <a href="https://marketplace.visualstudio.com/items?itemName=OneLuckiDev.wikiAge" 
+                   target="_blank" rel="noopener noreferrer" className="project-link">
+                  View on Marketplace
+                </a>
+                <a href="https://github.com/jeffpriz/ado-wiki-age-report" 
+                   target="_blank" rel="noopener noreferrer" className="project-link">
+                  GitHub
+                </a>
+              </div>
+              <div className="project-tags">
+                <span className="tag">Azure Repos</span>
+                <span className="tag">Documentation</span>
+                <span className="tag">Wiki</span>
+                <span className="tag">TypeScript</span>
               </div>
             </div>
           </div>
