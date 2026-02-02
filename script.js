@@ -27,8 +27,9 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements for animation
+// Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
+    // Observe elements for animation
     const animatedElements = document.querySelectorAll('.experience-card, .project-card, .achievement-item');
     
     animatedElements.forEach(el => {
@@ -39,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Navbar scroll effect
-    let lastScroll = 0;
     const navbar = document.querySelector('.navbar');
 
     window.addEventListener('scroll', () => {
@@ -50,13 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.2)';
         }
-
-        lastScroll = currentScroll;
     });
-});
 
-// Handle image error for profile picture
-document.addEventListener('DOMContentLoaded', () => {
+    // Handle image error for profile picture
     const profileImg = document.querySelector('.profile-img');
     if (profileImg) {
         profileImg.addEventListener('error', function() {
