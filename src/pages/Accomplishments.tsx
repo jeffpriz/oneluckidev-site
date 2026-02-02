@@ -26,7 +26,7 @@ const Accomplishments = () => {
                 </a>
                 <a href="https://github.com/jeffpriz/devops-pr-stats" 
                    target="_blank" rel="noopener noreferrer" className="project-link">
-                  GitHub (28 ⭐)
+                  GitHub
                 </a>
               </div>
               <div className="project-tags">
