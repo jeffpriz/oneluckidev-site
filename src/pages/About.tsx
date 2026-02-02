@@ -8,7 +8,7 @@ const About = () => {
         <div className="about-content">
           <div className="about-text">
             <p>
-              I'm a dedicated application developer and DevOps engineer with a passion for creating efficient, 
+              My name is Jeff, I'm a dedicated application developer and DevOps engineer with a passion for creating efficient, 
               scalable solutions. My expertise spans across full-stack development and implementing robust CI/CD pipelines.
             </p>
             <p>
