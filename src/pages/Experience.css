@@ -1,44 +1,75 @@
 /* Experience Section */
 .experience {
-  background-color: var(--light-bg);
+  background: transparent;
+  position: relative;
 }
 
 .experience-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1000px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .experience-card {
-  background-color: var(--card-bg);
-  padding: 2.5rem;
-  border-radius: 10px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  padding: 3rem;
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
   box-shadow: var(--shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-secondary);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.experience-card:hover::before {
+  transform: scaleX(1);
 }
 
 .experience-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-hover), var(--glow);
+  border-color: rgba(82, 152, 224, 0.3);
 }
 
 .card-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  transition: transform 0.4s ease;
+}
+
+.experience-card:hover .card-icon {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .experience-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
   color: var(--primary-color);
+  font-weight: 700;
 }
 
 .experience-card p {
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
   line-height: 1.8;
+  font-size: 1.05rem;
 }
 
 .experience-highlights {
@@ -47,10 +78,11 @@
 }
 
 .experience-highlights li {
-  padding: 0.5rem 0;
-  padding-left: 1.5rem;
+  padding: 0.75rem 0;
+  padding-left: 2rem;
   position: relative;
   color: var(--text-secondary);
+  transition: color 0.3s ease;
 }
 
 .experience-highlights li::before {
@@ -59,10 +91,19 @@
   left: 0;
   color: var(--success-color);
   font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.experience-card:hover .experience-highlights li {
+  color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
   .experience-grid {
     grid-template-columns: 1fr;
+  }
+
+  .experience-card {
+    padding: 2rem;
   }
 }
