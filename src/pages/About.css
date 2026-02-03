@@ -1,28 +1,46 @@
 /* About Section */
 .about {
-  background-color: var(--card-bg);
+  background: transparent;
+  min-height: 100vh;
 }
 
 .about-content {
-  max-width: 900px;
+  max-width: 950px;
   margin: 0 auto;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 3rem;
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--glass-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
 }
 
 .about-text p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  margin-bottom: 1.75rem;
   color: var(--text-secondary);
 }
 
 .skills {
-  margin-top: 3rem;
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 2px solid var(--border-color);
 }
 
 .skills h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
   color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.3px;
 }
 
 .skill-tags {
@@ -32,10 +50,46 @@
 }
 
 .skill-tag {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: var(--text-light);
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-weight: 500;
+  background: var(--gradient-primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
   font-size: 0.95rem;
+  box-shadow: 0 4px 15px rgba(82, 152, 224, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.skill-tag:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(82, 152, 224, 0.5);
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    padding: 2rem;
+    border-radius: 20px;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+  }
+
+  .skills h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-content {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .skill-tag {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
 }
