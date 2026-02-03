@@ -1,7 +1,7 @@
 /* Experience Section */
 .experience {
   background: transparent;
-  min-height: 100vh;
+  position: relative;
 }
 
 .experience-grid {
@@ -13,13 +13,13 @@
 }
 
 .experience-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
   padding: 3rem;
-  border-radius: 24px;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -32,9 +32,8 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: var(--gradient-primary);
+  background: var(--gradient-secondary);
   transform: scaleX(0);
-  transform-origin: left;
   transition: transform 0.4s ease;
 }
 
@@ -43,33 +42,33 @@
 }
 
 .experience-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 70px rgba(82, 152, 224, 0.3);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-hover), var(--glow);
+  border-color: rgba(82, 152, 224, 0.3);
 }
 
 .card-icon {
   font-size: 3.5rem;
   margin-bottom: 1.5rem;
   display: inline-block;
-  animation: float 6s ease-in-out infinite;
+  transition: transform 0.4s ease;
 }
 
-.experience-card:nth-child(2) .card-icon {
-  animation-delay: -3s;
+.experience-card:hover .card-icon {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .experience-card h3 {
-  font-size: 1.75rem;
-  margin-bottom: 1.25rem;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
   color: var(--primary-color);
   font-weight: 700;
-  letter-spacing: -0.3px;
 }
 
 .experience-card p {
   color: var(--text-secondary);
-  margin-bottom: 2rem;
-  line-height: 1.9;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
   font-size: 1.05rem;
 }
 
@@ -83,13 +82,7 @@
   padding-left: 2rem;
   position: relative;
   color: var(--text-secondary);
-  transition: color 0.3s ease, transform 0.3s ease;
-  font-size: 1rem;
-}
-
-.experience-highlights li:hover {
-  color: var(--text-primary);
-  transform: translateX(5px);
+  transition: color 0.3s ease;
 }
 
 .experience-highlights li::before {
@@ -99,40 +92,18 @@
   color: var(--success-color);
   font-weight: bold;
   font-size: 1.2rem;
-  transition: transform 0.3s ease;
 }
 
-.experience-highlights li:hover::before {
-  transform: scale(1.2);
+.experience-card:hover .experience-highlights li {
+  color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
   .experience-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
   }
 
-  .experience-card {
-    padding: 2.5rem;
-    border-radius: 20px;
-  }
-
-  .card-icon {
-    font-size: 3rem;
-  }
-
-  .experience-card h3 {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
   .experience-card {
     padding: 2rem;
-    border-radius: 16px;
-  }
-
-  .experience-highlights li {
-    font-size: 0.95rem;
   }
 }

@@ -1,7 +1,6 @@
 /* Accomplishments Section */
 .accomplishments {
   background: transparent;
-  min-height: 100vh;
 }
 
 .accomplishment-category {
@@ -18,7 +17,21 @@
   color: var(--primary-color);
   text-align: center;
   font-weight: 700;
-  letter-spacing: -0.3px;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.category-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-secondary);
+  border-radius: 2px;
 }
 
 .projects-grid {
@@ -30,73 +43,61 @@
 }
 
 .project-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
   padding: 2.5rem;
-  border-radius: 24px;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--glass-border);
-  border-left: 5px solid var(--primary-color);
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
 
-.project-card::after {
+.project-card::before {
   content: '';
   position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(82, 152, 224, 0.1) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.project-card:hover::after {
-  opacity: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-secondary);
 }
 
 .project-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 25px 70px rgba(82, 152, 224, 0.3);
-  border-left-color: var(--secondary-color);
+  box-shadow: var(--shadow-hover), var(--glow);
+  border-color: rgba(82, 152, 224, 0.4);
 }
 
 .project-header {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
   margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 1;
 }
 
 .project-icon {
   font-size: 3rem;
-  animation: float 6s ease-in-out infinite;
+  transition: transform 0.4s ease;
 }
 
-.project-card:nth-child(2) .project-icon {
-  animation-delay: -3s;
+.project-card:hover .project-icon {
+  transform: scale(1.15) rotate(5deg);
 }
 
 .project-card h4 {
   font-size: 1.5rem;
   color: var(--text-primary);
   font-weight: 700;
-  letter-spacing: -0.3px;
 }
 
 .project-card p {
   color: var(--text-secondary);
-  line-height: 1.9;
-  margin-bottom: 2rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
   font-size: 1.05rem;
-  position: relative;
-  z-index: 1;
 }
 
 .project-links {
@@ -104,89 +105,82 @@
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 1;
 }
 
 .project-link {
   display: inline-block;
   padding: 10px 20px;
-  background: var(--gradient-primary);
+  background: var(--gradient-secondary);
   color: white;
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 50px;
   font-size: 0.95rem;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(82, 152, 224, 0.3);
 }
 
 .project-link:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(82, 152, 224, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(82, 152, 224, 0.5);
 }
 
 .project-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  position: relative;
-  z-index: 1;
 }
 
 .tag {
-  background: linear-gradient(135deg, rgba(82, 152, 224, 0.2), rgba(107, 168, 235, 0.2));
+  background: rgba(82, 152, 224, 0.2);
   color: var(--primary-color);
+  border: 1px solid var(--primary-color);
   padding: 6px 14px;
-  border-radius: 20px;
+  border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 600;
-  border: 1px solid var(--primary-color);
   transition: all 0.3s ease;
 }
 
 .tag:hover {
-  background: var(--gradient-primary);
+  background: var(--primary-color);
   color: white;
   transform: translateY(-2px);
 }
 
 .achievements-list {
-  max-width: 950px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .achievement-item {
   display: flex;
   gap: 2rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   padding: 2rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
   border-radius: 20px;
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--card-border);
   box-shadow: var(--shadow);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .achievement-item:hover {
-  transform: translateX(10px);
-  box-shadow: var(--shadow-lg);
+  transform: translateX(8px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(82, 152, 224, 0.3);
 }
 
 .achievement-icon {
   font-size: 3rem;
   flex-shrink: 0;
-  animation: float 6s ease-in-out infinite;
+  transition: transform 0.3s ease;
 }
 
-.achievement-item:nth-child(2) .achievement-icon {
-  animation-delay: -2s;
-}
-
-.achievement-item:nth-child(3) .achievement-icon {
-  animation-delay: -4s;
+.achievement-item:hover .achievement-icon {
+  transform: scale(1.2) rotate(10deg);
 }
 
 .achievement-content h4 {
@@ -194,44 +188,36 @@
   margin-bottom: 0.75rem;
   color: var(--primary-color);
   font-weight: 700;
-  letter-spacing: -0.3px;
 }
 
 .achievement-content p {
   color: var(--text-secondary);
-  line-height: 1.9;
+  line-height: 1.8;
   font-size: 1.05rem;
 }
 
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
   }
 
   .project-card {
     padding: 2rem;
-    border-radius: 20px;
   }
 
   .achievement-item {
-    padding: 1.75rem;
+    padding: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .project-card {
-    padding: 1.75rem;
-    border-radius: 16px;
-  }
-
   .achievement-item {
     flex-direction: column;
     text-align: center;
-    padding: 1.5rem;
+    gap: 1rem;
   }
 
-  .achievement-icon {
-    font-size: 2.5rem;
+  .project-card {
+    padding: 1.5rem;
   }
 }
