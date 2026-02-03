@@ -9,11 +9,19 @@ const Contact = () => {
           Interested in collaborating or learning more about my work? Feel free to reach out!
         </p>
         <div className="contact-links">
+          <a href="mailto:jeff@oneluckidev.com" className="contact-link">
+            <span className="contact-icon">📧</span>
+            <span>Email</span>
+          </a>
+          <a href="https://www.linkedin.com/in/jeffpriz/" className="contact-link" target="_blank" rel="noopener noreferrer">
+            <span className="contact-icon">💼</span>
+            <span>LinkedIn</span>
+          </a>
           <a href="https://github.com/jeffpriz" className="contact-link" target="_blank" rel="noopener noreferrer">
             <span className="contact-icon">🔗</span>
             <span>GitHub</span>
           </a>
-          <a href="https://marketplace.visualstudio.com" className="contact-link" target="_blank" rel="noopener noreferrer">
+          <a href="https://marketplace.visualstudio.com/publishers/OneLuckiDev" className="contact-link" target="_blank" rel="noopener noreferrer">
             <span className="contact-icon">📦</span>
             <span>Azure DevOps Marketplace</span>
           </a>
