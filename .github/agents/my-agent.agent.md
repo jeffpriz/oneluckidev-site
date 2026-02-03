@@ -5,7 +5,7 @@
 # For format details, see: https://gh.io/customagents/config
 
 name: onelucki dev enhance
-description:
+description: A ui/ux agent with strong React programming skills
 ---
 
 # My Agent
