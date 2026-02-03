@@ -1,0 +1,114 @@
+/* Dad Joke Section */
+.dad-joke-section {
+  background: var(--bg-primary);
+  padding: 60px 0;
+  text-align: center;
+}
+
+.dad-joke-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.dad-joke-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.joke-card {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.05),
+    0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.joke-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 8px 12px rgba(0, 0, 0, 0.1),
+    0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.joke-setup {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.joke-punchline {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.joke-punchline::before {
+  content: '😄';
+  position: absolute;
+  left: 0;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .dad-joke-section {
+    padding: 40px 0;
+  }
+
+  .dad-joke-title {
+    font-size: 1.6rem;
+  }
+
+  .joke-card {
+    padding: 2rem;
+  }
+
+  .joke-setup {
+    font-size: 1.1rem;
+  }
+
+  .joke-punchline {
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .joke-punchline::before {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dad-joke-section {
+    padding: 30px 0;
+  }
+
+  .dad-joke-title {
+    font-size: 1.4rem;
+  }
+
+  .joke-card {
+    padding: 1.5rem;
+  }
+
+  .joke-setup {
+    font-size: 1rem;
+  }
+
+  .joke-punchline {
+    font-size: 0.95rem;
+  }
+}
