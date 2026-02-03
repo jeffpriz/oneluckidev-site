@@ -29,24 +29,22 @@ const Navbar = () => {
             }}
           />
         </Link>
-        <div className="nav-right">
-          <ThemeToggle />
-          <button 
-            className={`hamburger ${isMenuOpen ? 'active' : ''}`}
-            onClick={toggleMenu}
-            aria-label="Toggle navigation menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li><Link to="/about" onClick={closeMenu}>About</Link></li>
           <li><Link to="/experience" onClick={closeMenu}>Experience</Link></li>
           <li><Link to="/accomplishments" onClick={closeMenu}>Accomplishments</Link></li>
           <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
+          <li className="theme-toggle-item"><ThemeToggle /></li>
         </ul>
+        <button 
+          className={`hamburger ${isMenuOpen ? 'active' : ''}`}
+          onClick={toggleMenu}
+          aria-label="Toggle navigation menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </nav>
   )
