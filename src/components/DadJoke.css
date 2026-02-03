@@ -1,0 +1,127 @@
+/* Dad Joke Section */
+.dad-joke-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  padding: 0 0 40px 0;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.dad-joke-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(82, 152, 224, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(107, 168, 235, 0.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.dad-joke-content {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.dad-joke-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
+  opacity: 0.95;
+}
+
+.joke-card {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.05),
+    0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.joke-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 8px 12px rgba(0, 0, 0, 0.1),
+    0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.joke-setup {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.joke-punchline {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.joke-punchline::before {
+  content: '😄';
+  position: absolute;
+  left: 0;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .dad-joke-section {
+    padding: 0 0 30px 0;
+  }
+
+  .dad-joke-title {
+    font-size: 1.2rem;
+  }
+
+  .joke-card {
+    padding: 2rem;
+  }
+
+  .joke-setup {
+    font-size: 1.1rem;
+  }
+
+  .joke-punchline {
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .joke-punchline::before {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dad-joke-section {
+    padding: 0 0 25px 0;
+  }
+
+  .dad-joke-title {
+    font-size: 1.1rem;
+  }
+
+  .joke-card {
+    padding: 1.5rem;
+  }
+
+  .joke-setup {
+    font-size: 1rem;
+  }
+
+  .joke-punchline {
+    font-size: 0.95rem;
+  }
+}
