@@ -15,10 +15,27 @@
 }
 
 .nav-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  height: 50px;
+}
+
+.nav-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-brand-text {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-light);
-  text-decoration: none;
 }
 
 .nav-menu {
@@ -35,10 +52,17 @@
 }
 
 .nav-menu a:hover {
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 @media (max-width: 768px) {
+  .nav-brand {
+    height: 40px;
+  }
+
+  .nav-logo {
+    height: 40px;
+  }
   .nav-menu {
     gap: 1rem;
     font-size: 0.9rem;
@@ -47,6 +71,14 @@
 
 @media (max-width: 480px) {
   .nav-brand {
+    height: 35px;
+  }
+
+  .nav-logo {
+    height: 35px;
+  }
+
+  .nav-brand-text {
     font-size: 1.2rem;
   }
 
