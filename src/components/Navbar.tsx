@@ -6,7 +6,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="container">
         <Link to="/" className="nav-brand">
-          <img src="/OLDevLogoBanner.png" alt="OneLuckiDev Logo" className="nav-logo" 
+          <img src="/images/OLDevLogoBanner.png" alt="OneLuckiDev Logo" className="nav-logo" 
             onError={(e) => {
               const target = e.target as HTMLImageElement
               target.style.display = 'none'
