@@ -27,9 +27,11 @@
   font-size: 3.5rem;
   font-weight: 700;
   float: left;
-  line-height: 1;
-  margin: 0 10px 0 0;
+  line-height: 0.9;
+  margin: 5px 10px 0 0;
   color: var(--primary-color);
+  /* Ensure proper text flow for accessibility */
+  padding-top: 2px;
 }
 
 .skills {
