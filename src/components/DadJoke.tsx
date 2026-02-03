@@ -15,7 +15,9 @@ const DadJoke = () => {
     const fetchJoke = async () => {
       try {
         const response = await fetch('/dad_jokes.json')
+        if (!response.ok) throw new Error('Failed to fetch jokes')
         const jokes: Joke[] = await response.json()
+        if (jokes.length === 0) throw new Error('No jokes available')
         const randomJoke = jokes[Math.floor(Math.random() * jokes.length)]
         setJoke(randomJoke)
         setLoading(false)
