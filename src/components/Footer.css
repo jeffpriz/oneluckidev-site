@@ -1,12 +1,26 @@
 /* Footer */
 .footer {
-  background-color: var(--dark-bg);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: var(--text-light);
   text-align: center;
-  padding: 2rem 0;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--glass-border);
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .footer p {
-  margin: 0.5rem 0;
-  opacity: 0.8;
+  margin: 0.75rem 0;
+  opacity: 0.85;
+  font-size: 0.95rem;
+  transition: opacity 0.3s ease;
+}
+
+.footer p:hover {
+  opacity: 1;
+}
+
+.footer p:first-child {
+  font-weight: 600;
 }
