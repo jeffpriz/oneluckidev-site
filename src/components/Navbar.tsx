@@ -29,6 +29,12 @@ const Navbar = () => {
             }}
           />
         </Link>
+        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+          <li><Link to="/about" onClick={closeMenu}>About</Link></li>
+          <li><Link to="/experience" onClick={closeMenu}>Experience</Link></li>
+          <li><Link to="/accomplishments" onClick={closeMenu}>Accomplishments</Link></li>
+          <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
+        </ul>
         <div className="nav-right">
           <ThemeToggle />
           <button 
@@ -41,12 +47,6 @@ const Navbar = () => {
             <span></span>
           </button>
         </div>
-        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-          <li><Link to="/about" onClick={closeMenu}>About</Link></li>
-          <li><Link to="/experience" onClick={closeMenu}>Experience</Link></li>
-          <li><Link to="/accomplishments" onClick={closeMenu}>Accomplishments</Link></li>
-          <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
-        </ul>
       </div>
     </nav>
   )
