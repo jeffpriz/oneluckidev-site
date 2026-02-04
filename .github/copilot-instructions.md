@@ -79,17 +79,17 @@ oneluckidev-site/
 │   └── images/                    # Static assets (profile pictures, etc.)
 ├── src/
 │   ├── components/                # Reusable React components
-│   │   ├── DadJoke.tsx/css       # Dad joke widget component
-│   │   ├── Footer.tsx/css        # Site footer
-│   │   ├── Navbar.tsx/css        # Navigation bar with mobile menu
-│   │   ├── ScrollToTop.tsx/css   # Scroll to top button
-│   │   └── ThemeToggle.tsx/css   # Dark/light theme toggle
+│   │   ├── DadJoke.tsx + .css    # Dad joke widget component
+│   │   ├── Footer.tsx + .css     # Site footer
+│   │   ├── Navbar.tsx + .css     # Navigation bar with mobile menu
+│   │   ├── ScrollToTop.tsx + .css # Scroll to top button
+│   │   └── ThemeToggle.tsx + .css # Dark/light theme toggle
 │   ├── pages/                     # Page components (one per route)
-│   │   ├── Home.tsx/css          # Landing page
-│   │   ├── About.tsx/css         # About page
-│   │   ├── Experience.tsx/css    # Professional experience
-│   │   ├── Accomplishments.tsx/css # Achievements and projects
-│   │   └── Contact.tsx/css       # Contact information
+│   │   ├── Home.tsx + .css       # Landing page
+│   │   ├── About.tsx + .css      # About page
+│   │   ├── Experience.tsx + .css # Professional experience
+│   │   ├── Accomplishments.tsx + .css # Achievements and projects
+│   │   └── Contact.tsx + .css    # Contact information
 │   ├── contexts/                  # React context providers
 │   ├── styles/
 │   │   └── index.css             # Global styles and CSS variables
