@@ -38,8 +38,20 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 0 auto;
+}
+
+@media (min-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .project-card {
@@ -196,6 +208,45 @@
   font-size: 1.05rem;
 }
 
+.show-more-container {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.show-more-btn {
+  background: var(--gradient-secondary);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(82, 152, 224, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.show-more-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(82, 152, 224, 0.5);
+}
+
+.show-more-btn:active {
+  transform: translateY(-1px);
+}
+
+.show-more-btn .arrow {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.show-more-btn:hover .arrow {
+  transform: translateY(2px);
+}
+
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
@@ -207,6 +258,11 @@
 
   .achievement-item {
     padding: 1.5rem;
+  }
+  
+  .show-more-btn {
+    padding: 12px 30px;
+    font-size: 1rem;
   }
 }
 
