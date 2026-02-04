@@ -19,7 +19,7 @@ const Home = () => {
                 target.textContent = '👨‍💻'
               }}
             />
-            <h1 className="hero-title">Hello, I'm <span className="highlight">Jeff Przylucki</span> <br />  One Lucki Dev</h1>
+            <h1 className="hero-title">Hello, I'm <span className="highlight">Jeff Przylucki</span> <br /> One Lucki Dev</h1>
             <p className="hero-subtitle">Application Developer & DevOps Engineer</p>
             <p className="hero-description">
               Passionate about building scalable applications and streamlining development workflows through modern DevOps practices.
