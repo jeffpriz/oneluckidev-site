@@ -18,21 +18,53 @@ steps:
   - script: npm ci
     displayName: Install dependencies
 
-  - script: npm install --save-dev eslint@9 @eslint/js typescript-eslint stylelint stylelint-config-standard
+  - script: npm install --no-save eslint@9 @typescript-eslint/parser @typescript-eslint/eslint-plugin stylelint stylelint-config-standard
     displayName: Install lint tooling
 
-  - script: node -e "var fs=require('fs');fs.writeFileSync('eslint.config.mjs','import js from \"@eslint/js\";\nimport tseslint from \"typescript-eslint\";\nexport default [\n  js.configs.recommended,\n  ...tseslint.configs.recommended,\n  { files: [\"src/**/*.{ts,tsx}\"], languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } } },\n  { ignores: [\"dist/**\", \"node_modules/**\"] }\n];\n',{encoding:'utf8'});"
-    displayName: Generate ESLint flat config
+  - powershell: |
+      @'
+      // Flat config for ESLint v9+
+      import tseslint from "@typescript-eslint/eslint-plugin";
+      import tsParser from "@typescript-eslint/parser";
+
+      export default [
+        {
+          files: ["src/**/*.{ts,tsx}"],
+          languageOptions: {
+            parser: tsParser,
+            parserOptions: {
+              ecmaVersion: "latest",
+              sourceType: "module",
+              project: "./tsconfig.json"
+            }
+          },
+          plugins: { "@typescript-eslint": tseslint },
+          rules: {
+            "no-unused-vars": "off",
+            "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
+          }
+        }
+      ];
+      '@ | Set-Content -Path eslint.config.mjs -Encoding UTF8
+    displayName: Create ESLint flat config
 
   - script: npx eslint "src/**/*.{ts,tsx}" --max-warnings=0
     displayName: Lint TS/TSX
 
-  - script: node -e "var fs=require('fs');fs.writeFileSync('.stylelintrc.json',JSON.stringify({extends:['stylelint-config-standard'],rules:{'color-no-invalid-hex':true}},null,2),{encoding:'utf8'});"
-    displayName: Generate Stylelint config
+  - powershell: |
+      @'
+      {
+        "extends": ["stylelint-config-standard"],
+        "rules": {
+          "color-no-invalid-hex": true
+        }
+      }
+      '@ | Set-Content -Path .stylelintrc.json -Encoding UTF8
+    displayName: Create Stylelint config
 
-  - script: npx --no stylelint "src/**/*.css"
-    displayName: Lint CSS
-
+  - script: npx stylelint "src/**/*.{css,scss}" --max-warnings=0
+    displayName: Lint CSS/SCSS
+    
   - script: npm run build
     displayName: Build
 
