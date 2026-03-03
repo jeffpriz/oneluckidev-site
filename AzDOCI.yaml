@@ -18,8 +18,49 @@ steps:
   - script: npm ci
     displayName: Install dependencies
 
+  - script: npm install --no-save eslint@9 @typescript-eslint/parser @typescript-eslint/eslint-plugin stylelint stylelint-config-standard
+    displayName: Install lint tooling
+
+  - powershell: |
+      @'
+      // Flat config for ESLint v9+
+      import tseslint from "@typescript-eslint/eslint-plugin";
+      import tsParser from "@typescript-eslint/parser";
+
+      export default [
+        {
+          files: ["src/**/*.{ts,tsx}"],
+          languageOptions: {
+            parser: tsParser,
+            parserOptions: {
+              ecmaVersion: "latest",
+              sourceType: "module",
+              project: "./tsconfig.json"
+            }
+          },
+          plugins: { "@typescript-eslint": tseslint },
+          rules: {
+            "no-unused-vars": "off",
+            "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
+          }
+        }
+      ];
+      '@ | Set-Content -Path eslint.config.mjs -Encoding UTF8
+    displayName: Create ESLint flat config
+
   - script: npx eslint "src/**/*.{ts,tsx}" --max-warnings=0
     displayName: Lint TS/TSX
+
+  - powershell: |
+      @'
+      {
+        "extends": ["stylelint-config-standard"],
+        "rules": {
+          "color-no-invalid-hex": true
+        }
+      }
+      '@ | Set-Content -Path .stylelintrc.json -Encoding UTF8
+    displayName: Create Stylelint config
 
   - script: npx stylelint "src/**/*.css"
     displayName: Lint CSS
