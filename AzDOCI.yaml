@@ -18,51 +18,48 @@ steps:
   - script: npm ci
     displayName: Install dependencies
 
-  - script: npm install --no-save eslint@9 @typescript-eslint/parser @typescript-eslint/eslint-plugin stylelint stylelint-config-standard
+  - script: npm install --save-dev eslint@9 @eslint/js typescript-eslint stylelint stylelint-config-standard
     displayName: Install lint tooling
 
-  - powershell: |
-      @'
-      // Flat config for ESLint v9+
-      import tseslint from "@typescript-eslint/eslint-plugin";
-      import tsParser from "@typescript-eslint/parser";
-
+  - script: >
+      node -e "
+      const fs = require('fs');
+      const config = `
+      import js from '@eslint/js';
+      import tseslint from 'typescript-eslint';
       export default [
+        js.configs.recommended,
+        ...tseslint.configs.recommended,
         {
-          files: ["src/**/*.{ts,tsx}"],
+          files: ['src/**/*.{ts,tsx}'],
           languageOptions: {
-            parser: tsParser,
             parserOptions: {
-              ecmaVersion: "latest",
-              sourceType: "module",
-              project: "./tsconfig.json"
+              ecmaFeatures: { jsx: true }
             }
-          },
-          plugins: { "@typescript-eslint": tseslint },
-          rules: {
-            "no-unused-vars": "off",
-            "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
           }
-        }
+        },
+        { ignores: ['dist/**', 'node_modules/**'] }
       ];
-      '@ | Set-Content -Path eslint.config.mjs -Encoding UTF8
-    displayName: Create ESLint flat config
+      `;
+      fs.writeFileSync('eslint.config.mjs', config.trim());
+      "
+    displayName: Generate ESLint flat config
 
-  - script: npx eslint "src/**/*.{ts,tsx}" --max-warnings=0
+  - script: npx --no eslint "src/**/*.{ts,tsx}" --max-warnings=0
     displayName: Lint TS/TSX
 
-  - powershell: |
-      @'
-      {
-        "extends": ["stylelint-config-standard"],
-        "rules": {
-          "color-no-invalid-hex": true
-        }
-      }
-      '@ | Set-Content -Path .stylelintrc.json -Encoding UTF8
-    displayName: Create Stylelint config
+  - script: >
+      node -e "
+      const fs = require('fs');
+      const config = JSON.stringify({
+        extends: ['stylelint-config-standard'],
+        rules: { 'color-no-invalid-hex': true }
+      }, null, 2);
+      fs.writeFileSync('.stylelintrc.json', config);
+      "
+    displayName: Generate Stylelint config
 
-  - script: npx stylelint "src/**/*.css"
+  - script: npx --no stylelint "src/**/*.css"
     displayName: Lint CSS
 
   - script: npm run build
@@ -71,7 +68,8 @@ steps:
   - powershell: |
       New-Item -ItemType Directory -Path "$(Build.ArtifactStagingDirectory)\site" -Force | Out-Null
       Copy-Item -Path "dist\*" -Destination "$(Build.ArtifactStagingDirectory)\site" -Recurse
-      Compress-Archive -Path "$(Build.ArtifactStagingDirectory)\site\*" -DestinationPath "$(Build.ArtifactStagingDirectory)\oneluckidev-site-$(Build.BuildNumber).zip" -Force
+      Compress-Archive -Path "$(Build.ArtifactStagingDirectory)\site\*" `
+        -DestinationPath "$(Build.ArtifactStagingDirectory)\oneluckidev-site-$(Build.BuildNumber).zip" -Force
     displayName: Package for IIS (ZIP)
 
   - task: PublishBuildArtifacts@1
