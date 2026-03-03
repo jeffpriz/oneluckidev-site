@@ -1,0 +1,40 @@
+name: $(Date:yy).$(DayOfYear).$(Seconds)
+
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: windows-latest
+
+steps:
+  - checkout: self
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+
+  - script: npm ci
+    displayName: Install dependencies
+
+  - script: npx eslint "src/**/*.{ts,tsx}" --max-warnings=0
+    displayName: Lint TS/TSX
+
+  - script: npx stylelint "src/**/*.css"
+    displayName: Lint CSS
+
+  - script: npm run build
+    displayName: Build
+
+  - powershell: |
+      New-Item -ItemType Directory -Path "$(Build.ArtifactStagingDirectory)\site" -Force | Out-Null
+      Copy-Item -Path "dist\*" -Destination "$(Build.ArtifactStagingDirectory)\site" -Recurse
+      Compress-Archive -Path "$(Build.ArtifactStagingDirectory)\site\*" -DestinationPath "$(Build.ArtifactStagingDirectory)\oneluckidev-site-$(Build.BuildNumber).zip" -Force
+    displayName: Package for IIS (ZIP)
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'drop'
+    displayName: Publish artifact
