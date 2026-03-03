@@ -75,15 +75,14 @@ steps:
       New-Item -ItemType Directory -Path $universalDir -Force | Out-Null
       Copy-Item -Path $zipPath -Destination $universalDir -Force
     displayName: Package for IIS (ZIP)
-
   - task: UniversalPackages@0
     inputs:
-      command: publish
-      publishDirectory: '$(Build.ArtifactStagingDirectory)/universal'
-      feedsToUse: internal
-      project: MyHealthHier
-      vstsFeedPublish: Universal
-      vstsFeedPackagePublish: oneluckidev-site
-      versionOption: custom
+      command: 'publish'
+      publishDirectory: '$(Build.ArtifactStagingDirectory)'
+      feedsToUsePublish: 'internal'
+      vstsFeedPublish: '5fd157e4-52eb-4fe6-b1bb-03f13ea2592b/2ec6e481-5da1-43a4-bb57-007335ef852f'
+      vstsFeedPackagePublish: 'oneluckidev-site'
+      versionOption: 'custom'
       versionPublish: '$(Build.BuildNumber)'
+      packagePublishDescription: 'The oneluckidev site'  
     displayName: Publish to Azure Artifacts (Universal)
