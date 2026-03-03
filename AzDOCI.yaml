@@ -1,5 +1,4 @@
-name: $(Date:yy).$(DayOfYear).$(Seconds)
-
+name: $(Date:yy).$(DayOfYear)
 trigger:
   branches:
     include:
@@ -10,6 +9,13 @@ pool:
 
 steps:
   - checkout: self
+
+  - powershell: |
+      $now = Get-Date
+      $secondsOfDay = [int][Math]::Floor($now.TimeOfDay.TotalSeconds)
+      $buildNumber = '{0}.{1}.{2}' -f $now.ToString('yy'), $now.DayOfYear, $secondsOfDay
+      Write-Host "##vso[build.updatebuildnumber]$buildNumber"
+    displayName: Set build number (YY.DayOfYear.SecondsSinceDayStart)
 
   - task: NodeTool@0
     inputs:
