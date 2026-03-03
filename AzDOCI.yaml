@@ -63,13 +63,26 @@ steps:
     displayName: Build
 
   - powershell: |
-      New-Item -ItemType Directory -Path "$(Build.ArtifactStagingDirectory)\site" -Force | Out-Null
-      Copy-Item -Path "dist\*" -Destination "$(Build.ArtifactStagingDirectory)\site" -Recurse
-      Compress-Archive -Path "$(Build.ArtifactStagingDirectory)\site\*" -DestinationPath "$(Build.ArtifactStagingDirectory)\oneluckidev-site-$(Build.BuildNumber).zip" -Force
+      $siteDir = "$(Build.ArtifactStagingDirectory)\site"
+      $zipPath = "$(Build.ArtifactStagingDirectory)\oneluckidev-site-$(Build.BuildNumber).zip"
+      $universalDir = "$(Build.ArtifactStagingDirectory)\universal"
+
+      New-Item -ItemType Directory -Path $siteDir -Force | Out-Null
+      Copy-Item -Path "dist\*" -Destination $siteDir -Recurse
+
+      Compress-Archive -Path "$siteDir\*" -DestinationPath $zipPath -Force
+
+      New-Item -ItemType Directory -Path $universalDir -Force | Out-Null
+      Copy-Item -Path $zipPath -Destination $universalDir -Force
     displayName: Package for IIS (ZIP)
 
-  - task: PublishBuildArtifacts@1
+  - task: UniversalPackages@0
     inputs:
-      pathToPublish: '$(Build.ArtifactStagingDirectory)'
-      artifactName: 'drop'
-    displayName: Publish artifact
+      command: publish
+      publishDirectory: '$(Build.ArtifactStagingDirectory)/universal'
+      feedsToUse: internal
+      vstsFeedPublish: Universal
+      vstsFeedPackagePublish: oneluckidev-site
+      versionOption: custom
+      versionPublish: '$(Build.BuildNumber)'
+    displayName: Publish to Azure Artifacts (Universal)
