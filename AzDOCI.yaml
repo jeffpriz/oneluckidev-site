@@ -81,6 +81,7 @@ steps:
       command: publish
       publishDirectory: '$(Build.ArtifactStagingDirectory)/universal'
       feedsToUse: internal
+      project: MyHealthHier
       vstsFeedPublish: Universal
       vstsFeedPackagePublish: oneluckidev-site
       versionOption: custom
