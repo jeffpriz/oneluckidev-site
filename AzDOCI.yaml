@@ -86,3 +86,11 @@ steps:
       versionPublish: '$(Build.BuildNumber)'
       packagePublishDescription: 'The oneluckidev site'  
     displayName: Publish to Azure Artifacts (Universal)
+    
+  - task: rvo-vsts-promotepackage-task@3
+    inputs:
+      feed: '5fd157e4-52eb-4fe6-b1bb-03f13ea2592b/2ec6e481-5da1-43a4-bb57-007335ef852f'
+      inputType: 'nameVersion'
+      definition: 'oneluckidev-site'
+      version: '$(Build.BuildNumber)'
+      releaseView: 'ed74eee9-aff6-46cb-82a9-66d9ed03896f'
