@@ -80,7 +80,7 @@ steps:
       command: 'publish'
       publishDirectory: '$(Build.ArtifactStagingDirectory)'
       feedsToUsePublish: 'internal'
-      vstsFeedPublish: '5fd157e4-52eb-4fe6-b1bb-03f13ea2592b/2ec6e481-5da1-43a4-bb57-007335ef852f'
+      vstsFeedPublish: 'MyHealthHier/Universal'
       vstsFeedPackagePublish: 'oneluckidev-site'
       versionOption: 'custom'
       versionPublish: '$(Build.BuildNumber)'
@@ -94,3 +94,4 @@ steps:
       definition: 'oneluckidev-site'
       version: '$(Build.BuildNumber)'
       releaseView: 'ed74eee9-aff6-46cb-82a9-66d9ed03896f'
+    displayName: Promote package to release view        
