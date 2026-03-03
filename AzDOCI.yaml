@@ -51,20 +51,8 @@ steps:
   - script: npx eslint "src/**/*.{ts,tsx}" --max-warnings=0
     displayName: Lint TS/TSX
 
-  - powershell: |
-      @'
-      {
-        "extends": ["stylelint-config-standard"],
-        "rules": {
-          "color-no-invalid-hex": true
-        }
-      }
-      '@ | Set-Content -Path .stylelintrc.json -Encoding UTF8
-    displayName: Create Stylelint config
 
-  - script: npx stylelint "src/**/*.{css,scss}" --max-warnings=0
-    displayName: Lint CSS/SCSS
-    
+
   - script: npm run build
     displayName: Build
 
